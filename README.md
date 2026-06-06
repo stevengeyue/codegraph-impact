@@ -144,13 +144,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v6
+      - uses: stevengeyue/codegraph-impact@main
+        id: impact
         with:
-          node-version: 22
-      - run: npx github:stevengeyue/codegraph-impact --base origin/${{ github.base_ref }} --pr-comment > impact-comment.md
+          base: ${{ github.event.pull_request.base.sha }}
+          pr-comment: "true"
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
-          path: impact-comment.md
+          message: ${{ steps.impact.outputs.comment }}
 ```
 
 To post a sticky PR comment, see [docs/github-action.md](docs/github-action.md).

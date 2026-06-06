@@ -15,6 +15,7 @@
     "codegraph-impact": "./dist/cli.js"
   },
   "files": [
+    "action.yml",
     "dist",
     "docs",
     "examples",
