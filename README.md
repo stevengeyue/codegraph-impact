@@ -61,6 +61,8 @@ Artifacts:
   report.html
 ```
 
+See [examples/agent-context.md](examples/agent-context.md) and [examples/report.html](examples/report.html) for a demo pack.
+
 ## The Agent Context Pack
 
 The generated `.codegraph-impact/agent-context.md` is designed to paste directly into Codex, Claude Code, Cursor, or any coding agent:
@@ -144,6 +146,8 @@ jobs:
           node-version: 22
       - run: npx codegraph-impact --base origin/${{ github.base_ref }} --format json --report
 ```
+
+To post a sticky PR comment, see [docs/github-action.md](docs/github-action.md).
 
 ## Development
 

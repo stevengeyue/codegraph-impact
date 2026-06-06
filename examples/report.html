@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CodeGraph Impact Demo</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { margin: 0; background: #0f1216; color: #eef2f6; }
+    main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+    header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; border-bottom: 1px solid #2a313a; padding-bottom: 28px; }
+    h1 { margin: 0 0 8px; font-size: 40px; line-height: 1.05; }
+    p, span { color: #aeb8c4; }
+    .badge { border: 1px solid #6b5720; color: #ffd166; padding: 8px 12px; border-radius: 6px; text-transform: uppercase; font-weight: 700; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 28px 0; }
+    .stat, section { background: #171c22; border: 1px solid #2a313a; border-radius: 8px; }
+    .stat { padding: 16px; }
+    .stat strong { display: block; font-size: 28px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    section { padding: 18px; margin-bottom: 16px; }
+    h2 { margin: 0 0 14px; font-size: 18px; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    li { display: grid; gap: 4px; padding: 10px 0; border-top: 1px solid #29313a; }
+    li:first-child { border-top: 0; }
+    @media (max-width: 760px) { header, .grid { display: block; } .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>CodeGraph Impact</h1>
+        <p>demo-shop · base main · PR #42</p>
+      </div>
+      <div class="badge">medium risk</div>
+    </header>
+    <div class="stats">
+      <div class="stat"><strong>3</strong><span>files</span></div>
+      <div class="stat"><strong>+87</strong><span>additions</span></div>
+      <div class="stat"><strong>-24</strong><span>deletions</span></div>
+      <div class="stat"><strong>42</strong><span>risk score</span></div>
+    </div>
+    <div class="grid">
+      <section><h2>Likely Symbols</h2><ul><li><strong>parseToken</strong><span>function · src/auth/session.ts</span></li><li><strong>/login</strong><span>route · src/api/login.ts</span></li></ul></section>
+      <section><h2>Risk Signals</h2><ul><li><strong>25</strong><span>Authentication path changed</span></li><li><strong>12</strong><span>Security-sensitive web setting touched</span></li></ul></section>
+    </div>
+    <section><h2>Suggested Tests</h2><ul><li><strong>src/auth/session.test.ts</strong><span>npm test -- src/auth/session.test.ts</span></li><li><strong>src/api/login.test.ts</strong><span>npm test -- src/api/login.test.ts</span></li></ul></section>
+  </main>
+</body>
+</html>
