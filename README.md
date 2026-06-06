@@ -99,6 +99,7 @@ codegraph-impact
 codegraph-impact --base main
 codegraph-impact --agent claude
 codegraph-impact --format json
+codegraph-impact --pr-comment
 codegraph-impact --report
 codegraph-impact --out-dir impact-pack
 ```
@@ -112,6 +113,7 @@ Options:
 | `--agent <name>` | `codex` | `codex`, `claude`, `cursor`, or `generic` |
 | `--format <format>` | `text` | `text` or `json` |
 | `--report` | `false` | Write `report.html` |
+| `--pr-comment` | `false` | Print a GitHub PR Markdown comment |
 | `--no-context` | `false` | Skip `agent-context.md` |
 | `--max-files <n>` | `200` | Cap analyzed changed files |
 
@@ -145,7 +147,10 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-      - run: npx github:stevengeyue/codegraph-impact --base origin/${{ github.base_ref }} --format json --report
+      - run: npx github:stevengeyue/codegraph-impact --base origin/${{ github.base_ref }} --pr-comment > impact-comment.md
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: impact-comment.md
 ```
 
 To post a sticky PR comment, see [docs/github-action.md](docs/github-action.md).
@@ -162,7 +167,6 @@ node dist/cli.js --base HEAD --report
 
 ## Roadmap
 
-- PR comment mode for GitHub Actions.
 - Native CodeGraph JSON integration when the CLI exposes stable machine-readable impact output.
 - D3 impact subgraph in `report.html`.
 - Configurable risk rules per repo.

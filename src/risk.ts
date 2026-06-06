@@ -30,6 +30,7 @@ export function scoreRisks(files: ChangedFile[]): RiskSignal[] {
     const changedLines = file.hunks.flatMap((hunk) => hunk.addedLines);
     for (const line of changedLines) {
       for (const [regex, label, score] of riskyLinePatterns) {
+        if (isCommonCiSyntax(line)) continue;
         if (regex.test(line)) {
           risks.push({
             label,
@@ -49,6 +50,10 @@ export function scoreRisks(files: ChangedFile[]): RiskSignal[] {
   }
 
   return dedupeRisks(risks);
+}
+
+function isCommonCiSyntax(line: string): boolean {
+  return /\$\{\{\s*github\.(base_ref|head_ref|ref|sha|event|event_name)/i.test(line);
 }
 
 function dedupeRisks(risks: RiskSignal[]): RiskSignal[] {

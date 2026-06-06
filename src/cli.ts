@@ -3,7 +3,7 @@ import path from "node:path";
 import { Command, InvalidArgumentError } from "commander";
 import pc from "picocolors";
 import { analyze } from "./analyze.js";
-import { renderJson, renderText, writeArtifacts } from "./report.js";
+import { renderJson, renderPrComment, renderText, writeArtifacts } from "./report.js";
 import type { AgentName, CliOptions } from "./types.js";
 
 const program = new Command();
@@ -17,6 +17,7 @@ program
   .option("--agent <name>", "agent context style: codex, claude, cursor, generic", parseAgent, "codex")
   .option("--format <format>", "output format: text or json", parseFormat, "text")
   .option("--report", "write an HTML report", false)
+  .option("--pr-comment", "print a GitHub PR Markdown comment")
   .option("--no-context", "skip writing agent-context.md")
   .option("--max-files <n>", "maximum changed files to analyze", parsePositiveInt, 200)
   .action(async (rawOptions) => {
@@ -34,10 +35,14 @@ program
 
     try {
       const report = await analyze(options);
-      process.stdout.write(options.format === "json" ? `${renderJson(report)}\n` : `${renderText(report)}\n`);
+      if (rawOptions.prComment) {
+        process.stdout.write(`${renderPrComment(report)}\n`);
+      } else {
+        process.stdout.write(options.format === "json" ? `${renderJson(report)}\n` : `${renderText(report)}\n`);
+      }
 
       const written = await writeArtifacts(report, options.outDir, options.agent, options.report, options.context);
-      if (options.format === "text") {
+      if (options.format === "text" && !rawOptions.prComment) {
         process.stdout.write("\n");
         process.stdout.write(pc.bold("Artifacts\n"));
         for (const file of written) process.stdout.write(`- ${path.relative(cwd, file)}\n`);

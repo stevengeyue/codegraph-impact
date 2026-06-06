@@ -28,6 +28,30 @@ describe("risk", () => {
     expect(risks.map((risk) => risk.label)).toContain("Dynamic execution or shell boundary changed");
   });
 
+  it("does not flag common GitHub Action expressions as secrets", () => {
+    const risks = scoreRisks([
+      {
+        path: "docs/github-action.md",
+        status: "M",
+        additions: 1,
+        deletions: 0,
+        hunks: [
+          {
+            oldStart: 1,
+            oldLines: 1,
+            newStart: 1,
+            newLines: 1,
+            heading: "",
+            addedLines: ["- run: tool --base origin/${{ github.base_ref }}"],
+            removedLines: []
+          }
+        ]
+      }
+    ]);
+
+    expect(risks).toEqual([]);
+  });
+
   it("maps scores to levels", () => {
     expect(riskLevel(5)).toBe("low");
     expect(riskLevel(25)).toBe("medium");

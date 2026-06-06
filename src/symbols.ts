@@ -20,6 +20,18 @@ const patterns: Array<{
   { kind: "function", regex: /\b(?:public|private|protected|static|final|suspend|fun)\s+.*?\b([A-Za-z_]\w*)\s*\(/, confidence: "medium" }
 ];
 
+const reservedWords = new Set([
+  "if",
+  "for",
+  "while",
+  "switch",
+  "catch",
+  "with",
+  "return",
+  "function",
+  "class"
+]);
+
 export function inferChangedSymbols(files: ChangedFile[]): SymbolCandidate[] {
   const seen = new Set<string>();
   const symbols: SymbolCandidate[] = [];
@@ -33,6 +45,7 @@ export function inferChangedSymbols(files: ChangedFile[]): SymbolCandidate[] {
           if (!match) continue;
           const name = match[1]?.trim();
           if (!name || name.length > 120) continue;
+          if (reservedWords.has(name)) continue;
           const key = `${file.path}:${pattern.kind}:${name}`;
           if (seen.has(key)) continue;
           seen.add(key);

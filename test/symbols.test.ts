@@ -36,4 +36,28 @@ describe("inferChangedSymbols", () => {
       ])
     );
   });
+
+  it("does not report control-flow keywords as methods", () => {
+    const files: ChangedFile[] = [
+      {
+        path: "src/cli.ts",
+        status: "M",
+        additions: 1,
+        deletions: 0,
+        hunks: [
+          {
+            oldStart: 1,
+            oldLines: 0,
+            newStart: 1,
+            newLines: 1,
+            heading: "",
+            addedLines: ["if (rawOptions.prComment) {"],
+            removedLines: []
+          }
+        ]
+      }
+    ];
+
+    expect(inferChangedSymbols(files)).toEqual([]);
+  });
 });
