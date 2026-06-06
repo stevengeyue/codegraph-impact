@@ -7,10 +7,11 @@
 Turn `git diff` into a CodeGraph-ready impact report, test plan, and AI-agent context pack.
 
 [![CI](https://github.com/stevengeyue/codegraph-impact/actions/workflows/ci.yml/badge.svg)](https://github.com/stevengeyue/codegraph-impact/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/codegraph-impact.svg)](https://www.npmjs.com/package/codegraph-impact)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
+
+![CodeGraph Impact terminal demo](docs/terminal-demo.svg)
 
 ## Why
 
@@ -26,7 +27,7 @@ AI coding agents are fast, but they still waste time rediscovering the blast rad
 ## Quick Start
 
 ```bash
-npx codegraph-impact --base main --agent codex --report
+npx github:stevengeyue/codegraph-impact --base main --agent codex --report
 ```
 
 Output:
@@ -144,7 +145,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-      - run: npx codegraph-impact --base origin/${{ github.base_ref }} --format json --report
+      - run: npx github:stevengeyue/codegraph-impact --base origin/${{ github.base_ref }} --format json --report
 ```
 
 To post a sticky PR comment, see [docs/github-action.md](docs/github-action.md).

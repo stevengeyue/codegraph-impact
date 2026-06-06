@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-      - run: npx codegraph-impact --base origin/${{ github.base_ref }} --format json --report
+      - run: npx github:stevengeyue/codegraph-impact --base origin/${{ github.base_ref }} --format json --report
       - run: node scripts/github-pr-comment.mjs > impact-comment.md
       - uses: marocchino/sticky-pull-request-comment@v2
         with:

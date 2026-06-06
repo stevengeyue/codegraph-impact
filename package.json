@@ -3,11 +3,22 @@
   "version": "0.1.0",
   "description": "Turn git diffs into CodeGraph-powered impact reports, test suggestions, and AI-agent context packs.",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevengeyue/codegraph-impact.git"
+  },
+  "homepage": "https://github.com/stevengeyue/codegraph-impact#readme",
+  "bugs": {
+    "url": "https://github.com/stevengeyue/codegraph-impact/issues"
+  },
   "bin": {
     "codegraph-impact": "./dist/cli.js"
   },
   "files": [
     "dist",
+    "docs",
+    "examples",
+    "scripts",
     "README.md",
     "LICENSE"
   ],
@@ -16,7 +27,7 @@
     "check": "tsc --noEmit",
     "test": "vitest run",
     "start": "node dist/cli.js",
-    "prepack": "npm run build"
+    "prepare": "npm run build"
   },
   "keywords": [
     "codegraph",

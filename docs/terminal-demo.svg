@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img" aria-label="CodeGraph Impact terminal output demo">
+  <rect width="980" height="520" rx="8" fill="#0f1216"/>
+  <rect x="0" y="0" width="980" height="42" rx="8" fill="#171c22"/>
+  <circle cx="24" cy="21" r="6" fill="#ff6b6b"/>
+  <circle cx="44" cy="21" r="6" fill="#ffd166"/>
+  <circle cx="64" cy="21" r="6" fill="#79d98b"/>
+  <text x="90" y="27" fill="#aeb8c4" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14">codegraph-impact --base main --agent codex --report</text>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="18">
+    <text x="40" y="86" fill="#eef2f6" font-weight="700">CodeGraph Impact</text>
+    <text x="40" y="128" fill="#aeb8c4">Project: </text><text x="130" y="128" fill="#70d6ff">demo-shop</text>
+    <text x="40" y="160" fill="#aeb8c4">Base: main</text>
+    <text x="40" y="192" fill="#aeb8c4">Changed: 8 files, </text><text x="232" y="192" fill="#79d98b">+214</text><text x="282" y="192" fill="#ff7b7b">/-53</text>
+    <text x="40" y="224" fill="#aeb8c4">Risk: </text><text x="112" y="224" fill="#ffd166" font-weight="700">MEDIUM (42)</text>
+    <text x="40" y="256" fill="#aeb8c4">CodeGraph: </text><text x="158" y="256" fill="#79d98b">available 0.9.9</text>
+    <text x="40" y="310" fill="#eef2f6" font-weight="700">Likely Changed Symbols</text>
+    <text x="40" y="344" fill="#aeb8c4">- function </text><text x="152" y="344" fill="#70d6ff">parseToken</text><text x="262" y="344" fill="#aeb8c4"> (src/auth/session.ts:18)</text>
+    <text x="40" y="376" fill="#aeb8c4">- route </text><text x="122" y="376" fill="#70d6ff">/login</text><text x="196" y="376" fill="#aeb8c4"> (src/api/login.ts:22)</text>
+    <text x="40" y="430" fill="#eef2f6" font-weight="700">Suggested Tests</text>
+    <text x="40" y="464" fill="#aeb8c4">- src/auth/session.test.ts  npm test -- src/auth/session.test.ts</text>
+  </g>
+</svg>
