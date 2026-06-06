@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.codegraph-impact/
+coverage/
+*.log
+.env
